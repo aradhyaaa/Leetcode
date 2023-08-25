@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        int n = s.size();
+
+        // If there's only one row or the input string is empty, return the string as is
+        if (numRows == 1 || n == 0) {
+            return s;
+        }
+
+        string result;
+        int cycleLen = 2 * numRows - 2; // Length of each cycle in the zigzag pattern
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < n; j += cycleLen) {
+                result += s[j + i]; // Append the character in the current zigzag position
+
+                // Skip the first and last rows since they don't have an interior element
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n) {
+                    result += s[j + cycleLen - i]; // Append the character in the diagonal zigzag position
+                }
+            }
+        }
+
+        return result;
+    }
+};
