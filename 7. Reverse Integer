@@ -1,0 +1,18 @@
+class Solution {                      
+public:
+    int reverse(int x) {
+        long reversed = 0;  // Initialize a long variable to store the reversed integer
+        
+        while (x != 0) {
+            reversed = reversed * 10 + x % 10;  // Reverse the digits of x and add them to the reversed result
+            x = x / 10;  // Move to the next digit by removing the last digit from x
+        }
+        
+        // Check if the reversed integer is within the range of a 32-bit signed integer
+        if (reversed > INT_MAX || reversed < INT_MIN) {
+            return 0;  // Return 0 if the reversed value is outside the valid range
+        }
+        
+        return static_cast<int>(reversed);  // Convert the reversed value to int and return
+    }
+};
