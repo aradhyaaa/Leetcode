@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st; // Create an empty stack to store opening brackets
+        unordered_map<char, char> brackets = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['}
+        }; // Mapping of closing brackets to their corresponding opening brackets
+        
+        for (char c : s) { // Loop through each character in the string
+            if (brackets.find(c) != brackets.end()) { // If c is a closing bracket
+                if (st.empty() || st.top() != brackets[c]) {
+                    return false; // Bracket mismatch or stack underflow, so the string is not valid
+                }
+                st.pop(); // Pop the corresponding opening bracket from the stack
+            } else {
+                st.push(c); // Push opening brackets onto the stack
+            }
+        }
+        
+        return st.empty(); // If the stack is empty, all brackets are matched, so the string is valid
+    }
+};
