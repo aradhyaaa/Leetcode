@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int minPrice = prices[0]; // Initialize minPrice with the first price
+        int maxProfit = 0; // Initialize maxProfit as 0
+
+        // Iterate through prices starting from the second element
+        for (int i = 1; i < prices.size(); i++) {
+            // Update maxProfit with the maximum value between its current value and the difference between the current price and minPrice
+            maxProfit = max(maxProfit, prices[i] - minPrice);
+            
+            // Update minPrice with the minimum value between its current value and the current price
+            minPrice = min(minPrice, prices[i]);
+        }
+
+        return maxProfit; // Return the maximum profit
+    }
+};
