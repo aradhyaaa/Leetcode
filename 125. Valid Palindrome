@@ -1,0 +1,28 @@
+#include <string>
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int start = 0; // Initialize a pointer for the start of the string
+        int end = s.size() - 1; // Initialize a pointer for the end of the string
+        
+        while (start <= end) {
+            if (!isalnum(s[start])) { // Skip non-alphanumeric characters from the start
+                start++;
+                continue;
+            }
+            if (!isalnum(s[end])) { // Skip non-alphanumeric characters from the end
+                end--;
+                continue;
+            }
+            if (tolower(s[start]) != tolower(s[end])) {
+                return false; // If characters at the start and end are not equal, return false
+            } else {
+                start++; // Move the start pointer forward
+                end--;   // Move the end pointer backward
+            }
+        }
+        
+        return true; // If the loop completes without finding any non-palindromic characters, return true
+    }
+};
