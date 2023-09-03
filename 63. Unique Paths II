@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        if (obstacleGrid.empty() || obstacleGrid[0][0] == 1) {
+            return 0; // If the grid is empty or the starting cell is blocked, return 0 paths.
+        }
+
+        int rows = obstacleGrid.size();
+        int cols = obstacleGrid[0].size();
+        vector<int> dp(cols, 0); // Initialize a 1D array to store the number of paths for each column.
+        dp[0] = 1; // There's always one path to the starting cell.
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (obstacleGrid[r][c] == 1) {
+                    dp[c] = 0; // If the current cell is an obstacle, no paths can go through it.
+                } else {
+                    if (c > 0) {
+                        dp[c] += dp[c - 1]; // Update the number of paths from the left cell (if not out of bounds).
+                    }
+                }
+            }
+        }
+
+        return dp[cols - 1]; // Return the number of paths to the bottom-right corner.
+    }
+};
