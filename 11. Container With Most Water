@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        // Initialize two pointers, 'left' and 'right', at the beginning and end of the array.
+        int left = 0;
+        int right = height.size() - 1;
+        
+        // Initialize a variable 'maxArea' to store the maximum area.
+        int maxArea = 0;
+
+        // Continue as long as the 'left' pointer is less than the 'right' pointer.
+        while (left < right) {
+            // Calculate the current container's area using the smaller of the two heights and the width.
+            int currentArea = min(height[left], height[right]) * (right - left);
+            
+            // Update 'maxArea' if the current area is greater.
+            maxArea = max(maxArea, currentArea);
+
+            // Move the pointer that points to the smaller height, as moving the larger height won't increase the area.
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        // Return the maximum area found.
+        return maxArea;
+    }
+};
