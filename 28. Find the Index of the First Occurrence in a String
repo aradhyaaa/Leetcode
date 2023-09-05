@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        // Use the 'find' method of the 'string' class to search for 'needle' in 'haystack'.
+        size_t foundPos = haystack.find(needle);
+
+        // Check if 'needle' was found. The 'find' method returns 'string::npos' if not found.
+        if (foundPos != string::npos) {
+            // 'foundPos' holds the position of the first occurrence of 'needle' in 'haystack'.
+            return static_cast<int>(foundPos);
+        } else {
+            // 'needle' was not found in 'haystack,' so return -1 to indicate this.
+            return -1;
+        }
+    }
+};
