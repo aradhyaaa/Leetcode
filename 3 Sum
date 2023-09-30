@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        unordered_map<int, int> mp;
+        vector<vector<int>> ans;
+        unordered_set<string> seen;
+        
+        for (int i = 0; i < nums.size(); ++i) {
+            for (int j = i + 1; j < nums.size(); ++j) {
+                int complement = -nums[i] - nums[j];
+                if (mp.find(complement) != mp.end() && mp[complement] != i && mp[complement] != j) {
+                    vector<int> v = {nums[i], nums[j], complement};
+                    sort(v.begin(), v.end());
+                    string key = to_string(v[0]) + "#" + to_string(v[1]) + "#" + to_string(v[2]);
+                    if (seen.find(key) == seen.end()) {
+                        ans.push_back(v);
+                        seen.insert(key);
+                    }
+                }
+                mp[nums[j]] = j;
+            }
+        }
+        
+        return ans;
+    }
+};
