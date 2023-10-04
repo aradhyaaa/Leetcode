@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        // Sort the array in ascending order
+        sort(nums.begin(), nums.end());
+
+        int n = nums.size();
+        // The majority element will always be at index n/2 after sorting
+        return nums[n/2];
+    }
+};
